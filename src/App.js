@@ -94,14 +94,14 @@ function App() {
             }}
           >
             <SiOpenai
-              size={30}
-              color="#fff"
+              size={80}
+              color="#19c37d"
               style={{
-                backgroundColor: "#19c37d",
+                // backgroundColor: "#19c37d",
                 padding: 5,
                 borderRadius: 2,
-                minWidth: 35,
-                minHeight: 35,
+                minWidth: 85,
+                minHeight: 85,
               }}
             />
           </div>
