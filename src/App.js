@@ -71,7 +71,7 @@ function App() {
             color: "#fff",
           }}
         >
-          {/* Desenvolvido por Lenilson Lima Pantoja */}
+          Desenvolvido por Lenilson Lima Pantoja
         </p>
         {loading ? (
           <div
