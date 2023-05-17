@@ -60,6 +60,7 @@ function App() {
           display: "flex",
           flexDirection: "column",
           width: "100vw",
+          maxHeight: "80vh",
           rowGap: 30,
         }}
       >
@@ -70,7 +71,7 @@ function App() {
             color: "#fff",
           }}
         >
-          Desenvolvido por Lenilson Lima Pantoja
+          {/* Desenvolvido por Lenilson Lima Pantoja */}
         </p>
         {loading ? (
           <div
@@ -127,11 +128,13 @@ function App() {
         style={{
           width: "100vw",
           background: "#343541",
-          height: 150,
+          height: "20vh",
           padding: 20,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          position: "fixed",
+          bottom: 0,
         }}
       >
         <input
