@@ -100,8 +100,10 @@ function App() {
                   size={30}
                   style={{
                     backgroundColor: "#19c37d",
-                    padding: 2,
+                    padding: 5,
                     borderRadius: 2,
+                    minWidth: 35,
+                    minHeight: 35
                   }}
                 />
                 {item?.texto}
