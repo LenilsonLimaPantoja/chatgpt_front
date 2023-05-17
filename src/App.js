@@ -39,6 +39,22 @@ function App() {
         setLoading(false);
       });
   };
+  if (loading) {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#444654",
+        }}
+      >
+        <ReactLoading type={"spinningBubbles"} color={"#19c37d"} />
+      </div>
+    );
+  }
   return (
     <div
       style={{
@@ -73,18 +89,7 @@ function App() {
         >
           Desenvolvido por Lenilson Lima Pantoja
         </p>
-        {loading ? (
-          <div
-            style={{
-              flexGrow: 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <ReactLoading type={"spinningBubbles"} color={"#fff"} />
-          </div>
-        ) : mensagem?.length === 0 ? (
+        {mensagem?.length === 0 ? (
           <div
             style={{
               display: "flex",
@@ -97,7 +102,6 @@ function App() {
               size={80}
               color="#19c37d"
               style={{
-                // backgroundColor: "#19c37d",
                 padding: 5,
                 borderRadius: 2,
                 minWidth: 85,
