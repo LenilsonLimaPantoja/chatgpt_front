@@ -44,6 +44,7 @@ function App() {
       style={{
         backgroundColor: "#fff",
         height: "100vh",
+        maxHeight: "100vh",
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
@@ -62,6 +63,15 @@ function App() {
           rowGap: 30,
         }}
       >
+        <p
+          style={{
+            padding: 5,
+            textAlign: "center",
+            color: "#fff",
+          }}
+        >
+          Desenvolvido por Lenilson Lima Pantoja
+        </p>
         {loading ? (
           <div
             style={{
@@ -103,7 +113,7 @@ function App() {
                     padding: 5,
                     borderRadius: 2,
                     minWidth: 35,
-                    minHeight: 35
+                    minHeight: 35,
                   }}
                 />
                 {item?.texto}
