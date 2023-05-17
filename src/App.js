@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
-
+import { SiOpenai } from "react-icons/si";
+import ReactLoading from "react-loading";
 function App() {
   const [mensagem, setMensagem] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [pesquisar, setPesquisar] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const formData = new FormData(e.target);
-    const formValues = Object.fromEntries(formData);
 
     const requestOptions = {
       headers: {
@@ -20,17 +20,18 @@ function App() {
     await axios
       .post(
         "https://web-production-9d95.up.railway.app/open-ai",
-        { texto: formValues.mensagem },
+        { texto: pesquisar },
         requestOptions
       )
       .then((response) => {
         setMensagem([
           ...mensagem,
           {
-            pergunta: formValues?.mensagem,
+            pergunta: pesquisar,
             texto: response.data.retorno.response,
           },
         ]);
+        setPesquisar("");
         setLoading(false);
       })
       .catch((error) => {
@@ -41,48 +42,104 @@ function App() {
   return (
     <div
       style={{
-        backgroundColor: "#f2f2f2",
+        backgroundColor: "#fff",
         height: "100vh",
         display: "flex",
-        justifyContent: "center",
         alignItems: "center",
+        flexDirection: "column",
+        overflow: "hidden",
       }}
     >
-      {loading ? (
-        <p>carregando</p>
-      ) : (
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            width: 700,
-            display: "flex",
-            flexDirection: "column",
-            rowGap: 20,
-          }}
-        >
-          <input
-            type="text"
-            name="mensagem"
-            placeholder="Digite seu texto aqui"
+      <div
+        style={{
+          backgroundColor: "#444654",
+          flexGrow: 1,
+          padding: 20,
+          overflow: "auto",
+          display: "flex",
+          flexDirection: "column",
+          width: "100vw",
+          rowGap: 30,
+        }}
+      >
+        {loading ? (
+          <div
             style={{
-              height: 40,
-              padding: 10,
-              border: "solid 1px gray",
-              borderRadius: 5,
-              outline: "none",
+              flexGrow: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
-          />
-          {mensagem?.map((item, index) => (
-            <p key={index} style={{ textAlign: "justify" }}>
+          >
+            <ReactLoading type={"spinningBubbles"} color={"#fff"} />
+          </div>
+        ) : (
+          mensagem?.map((item, index) => (
+            <p
+              key={index}
+              style={{
+                textAlign: "justify",
+                color: "#fff",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
               <strong style={{ textTransform: "uppercase" }}>
-                {item.pergunta}
+                {index + 1} - {item.pergunta}
               </strong>
               <br />
-              {item?.texto}
+              <p
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  columnGap: 5,
+                  marginLeft: 15,
+                }}
+              >
+                <SiOpenai
+                  size={30}
+                  style={{
+                    backgroundColor: "#19c37d",
+                    padding: 2,
+                    borderRadius: 2,
+                  }}
+                />
+                {item?.texto}
+              </p>
             </p>
-          ))}
-        </form>
-      )}
+          ))
+        )}
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          width: "100vw",
+          background: "#343541",
+          height: 150,
+          padding: 20,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <input
+          type="text"
+          name="mensagem"
+          placeholder="Digite seu texto aqui"
+          value={pesquisar}
+          onChange={(e) => setPesquisar(e.target.value)}
+          style={{
+            height: 40,
+            padding: 10,
+            border: "solid 1px gray",
+            borderRadius: 5,
+            outline: "none",
+            flexGrow: 1,
+            maxWidth: 700,
+            height: 50,
+          }}
+        />
+      </form>
     </div>
   );
 }
