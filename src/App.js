@@ -84,6 +84,27 @@ function App() {
           >
             <ReactLoading type={"spinningBubbles"} color={"#fff"} />
           </div>
+        ) : mensagem?.length === 0 ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexGrow: 1,
+            }}
+          >
+            <SiOpenai
+              size={30}
+              color="#fff"
+              style={{
+                backgroundColor: "#19c37d",
+                padding: 5,
+                borderRadius: 2,
+                minWidth: 35,
+                minHeight: 35,
+              }}
+            />
+          </div>
         ) : (
           mensagem?.map((item, index) => (
             <p
