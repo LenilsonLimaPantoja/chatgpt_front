@@ -87,7 +87,7 @@ function App() {
             color: "#fff",
           }}
         >
-          Desenvolvido por Lenilson Lima Pantoja
+          Desenvolvido por Lenilson Lima Pantojas
         </p>
         {mensagem?.length === 0 ? (
           <div
