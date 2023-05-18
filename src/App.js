@@ -24,13 +24,14 @@ function App() {
         requestOptions
       )
       .then((response) => {
-        setMensagem([
-          ...mensagem,
+        const copyMensagem = [
+          ...mensagem.reverse(),
           {
             pergunta: pesquisar,
             texto: response.data.retorno.response,
           },
-        ]);
+        ];
+        setMensagem(copyMensagem.reverse());
         setPesquisar("");
         setLoading(false);
       })
@@ -62,7 +63,6 @@ function App() {
         height: "100vh",
         maxHeight: "100vh",
         display: "flex",
-        alignItems: "center",
         flexDirection: "column",
         overflow: "hidden",
       }}
