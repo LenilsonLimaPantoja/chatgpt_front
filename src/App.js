@@ -120,8 +120,8 @@ function App() {
                 flexDirection: "column",
               }}
             >
-              <strong style={{ textTransform: "uppercase" }}>
-                {index + 1} - {item.pergunta}
+              <strong style={{ textTransform: "uppercase", textAlign: 'left', backgroundColor: '#343541', padding: 10 }}>
+                {item.pergunta}
               </strong>
               <br />
               <p
@@ -129,7 +129,6 @@ function App() {
                   display: "flex",
                   alignItems: "flex-start",
                   columnGap: 5,
-                  marginLeft: 15,
                 }}
               >
                 <SiOpenai
